@@ -1,0 +1,148 @@
+<h5>发送邮件</h5>
+<hr>
+
+<div class="dark-form">
+    <h6>最近发送</h6>
+
+    <div class="btn-group col-md-12">
+            <select title="" class="selectPicker form-control" data-live-search="true" name="lastItems">
+                {sendingItems}
+            </select>
+            <button class="btn btn-success btn-sm col-md-3" onclick="selectItemMail()">选择</button>
+    </div>
+
+    <hr>
+    <div class="form-group row">
+        <label for="idChar" class="col-sm-2 col-form-label col-form-label-sm">角色ID</label>
+        <div class="col-sm-10">
+            <input title="test" data-toggle="tooltip" type="number" class="form-control form-control-sm" id="idChar"
+                   value="{idChar}">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="idItem" class="col-sm-2 col-form-label col-form-label-sm">物品ID</label>
+        <div class="col-sm-10">
+            <input type="number" class="form-control form-control-sm" id="idItem">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="countItem" class="col-sm-2 col-form-label col-form-label-sm">数量</label>
+        <div class="col-sm-10">
+            <input type="number" class="form-control form-control-sm" id="countItem" value="1">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="maxCountItem" class="col-sm-2 col-form-label col-form-label-sm">叠加上限</label>
+        <div class="col-sm-10">
+            <input type="number" class="form-control form-control-sm" id="maxCountItem" value="9999">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="octetItem" class="col-sm-2 col-form-label col-form-label-sm">物品代码</label>
+        <div class="col-sm-10">
+            <textarea rows="5" class="form-control form-control-sm" id="octetItem"></textarea>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="prototypeItem" class="col-sm-2 col-form-label col-form-label-sm">保护类型
+            <button type="button" onclick="modal_mask()" class="btn btn-primary btn-sm" data-toggle="modal"
+                    data-target="#prototypeWin">选择</button>
+        </label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control form-control-sm" id="prototypeItem" value="0">
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="timeItem" class="col-sm-2 col-form-label col-form-label-sm">时间限制</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control form-control-sm" id="timeItem" value="0">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="maskItem" class="col-sm-2 col-form-label col-form-label-sm">物品类型</label>
+        <div class="col-sm-10">
+            <select class="form-control form-control-sm" id="maskItem">
+                <option value="0" selected="selected">普通物品</option>
+                <option value="1">武器</option>
+                <option value="2">头盔</option>
+                <option value="8">披风</option>
+                <option value="16">衣服</option>
+                <option value="64">裤子</option>
+                <option value="128">鞋子</option>
+                <option value="256">护腕</option>
+                <option value="4096">飞行器</option>
+                <option value="1536">戒指</option>
+                <option value="8192">时装:上衣</option>
+                <option value="16384">时装: 裤子</option>
+                <option value="32768">时装: 鞋子</option>
+                <option value="65536">时装: 护腕</option>
+				<option value="33554432">时装:发型</option>
+                <option value="8388608">元素精灵</option>
+                <option value="1048576">护身符</option>
+                <option value="2097152">守神符</option>
+                <option value="262144">天书</option>
+                <option value="524288">表情</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="moneyItem" class="col-sm-2 col-form-label col-form-label-sm">金币</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control form-control-sm" id="moneyItem" value="0">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="titleItem" class="col-sm-2 col-form-label col-form-label-sm">邮件标题</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control form-control-sm" id="titleItem" value="{titleMail}">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="messageItem" class="col-sm-2 col-form-label col-form-label-sm">邮件内容</label>
+        <div class="col-sm-10">
+            <input title="test" data-toggle="tooltip" type="text" class="form-control form-control-sm" id="messageItem"
+                   value="{messageMail}">
+        </div>
+    </div>
+    <button name="sendMail" class="btn btn-success"> 发送邮件</button>
+    <button name="sendMailOnline" class="btn btn-primary"> 发给全服在线玩家</button>
+</div>
+
+<div class="modal fade" id="prototypeWin" tabindex="-1" role="dialog" aria-labelledby="prototypeLabel"
+     aria-hidden="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content bg-dark">
+            <div class="modal-header">
+                <h5 class="modal-title" id="prototypeLabel">保护类型</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body dark-form" style="overflow:scroll; height:400px; color: #b6babf">
+                <label><input type='checkbox' class='custom-checkbox' name='mask_1' value='1'/> 死亡保护</label><br>
+                <label><input type='checkbox' class='custom-checkbox' name='mask_2' value='2'/> 不可丢在地上</label><br>
+                <label><input type='checkbox' class='custom-checkbox' name='mask_4' value='4'/> 不可卖给NPC</label><br>
+                <label><input type='checkbox' class='custom-checkbox' name='mask_8' value='8'/> 可交易</label><br>
+                <label><input type='checkbox' class='custom-checkbox' name='mask_16' value='16'/> 不可交易</label><br>
+                <label><input type='checkbox' class='custom-checkbox' name='mask_32' value='32'/> 任务物品</label><br>
+                <label><input type='checkbox' class='custom-checkbox' name='mask_64' value='64'/> （使用）后天人合一</label><br>
+                <label><input type='checkbox' class='custom-checkbox' name='mask_128' value='128'/> 不可分解</label><br>
+                <label><input type='checkbox' class='custom-checkbox' name='mask_256' value='256'/> 离开当前场景消失</label><br>
+                <label><input type='checkbox' class='custom-checkbox' name='mask_512' value='512'/> 拾取立刻使用</label><br>
+                <label><input type='checkbox' class='custom-checkbox' name='mask_1024' value='1024'/> 死亡丢失</label><br>
+                <label><input type='checkbox' class='custom-checkbox' name='mask_2048' value='2048'/> 下线丢失</label><br>
+                <label><input type='checkbox' class='custom-checkbox' name='mask_4096' value='4096'/> 不可修理</label><br>
+                <label><input type='checkbox' class='custom-checkbox' name='mask_16384' value='16384'/> 不可放入账号仓库</label><br>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                <button type="button" id="accept" class="btn btn-primary" data-dismiss="modal">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+

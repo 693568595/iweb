@@ -1,0 +1,145 @@
+<h5>系统设置</h5>
+<hr>
+
+<nav>
+    <div class="nav nav-tabs_new box-shadow" id="nav-tab" role="tablist">
+
+        <a class="nav-item_new nav-link_new active_new" id="nav-main-tab" data-toggle="tab" href="#nav-main" role="tab"
+           aria-controls="nav-main" aria-selected="true">网站设置</a>
+
+        <a class="nav-item_new nav-link_new" id="nav-server-tab" data-toggle="tab" href="#nav-server" role="tab"
+           aria-controls="nav-server" aria-selected="false">服务器设置</a>
+
+        <a class="nav-item_new nav-link_new" id="nav-iweb-server-tab" data-toggle="tab" href="#nav-iweb-server" role="tab"
+           aria-controls="nav-iweb-server" aria-selected="false">连接设置</a>
+
+        <a class="nav-item_new nav-link_new" id="nav-data-tab" data-toggle="tab" href="#nav-data" role="tab"
+           aria-controls="nav-data" aria-selected="false">图标设置</a>
+    </div>
+</nav>
+<div class="tab-content dark-form" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-main" role="tabpanel" aria-labelledby="nav-main-tab">
+        <br>
+
+        <div class="form-group">
+            网站名称: <input title="" class="form-control form-control-sm" type="text" name="config[site_title]" value="{main_site_title}">
+        </div>
+
+        <div class="form-group">
+            网站地址: <input title="" class="form-control form-control-sm" type="text" name="config[site_adr]" value="{main_site_adr}">
+        </div>
+        <div class="form-group">
+            后台语言: {main_site_lang}
+        </div>
+        <div class="form-group">
+            聊天窗口: {main_widgetChat}
+        </div>
+
+        <div class="form-group">
+            聊天信息显示数量: <input title="" class="form-control form-control-sm" type="text" name="config[countChatMsg]" value="{main_countChatMsg}">
+        </div>
+
+        <div class="form-group">
+            日志记录: {main_logActions}
+        </div>
+        <div class="form-group">
+            检查更新: {main_checkUpdate}
+        </div>
+        <div class="form-group">
+            访问限制: {main_access}
+            <small class="form-text text-muted">开启功能后，可指定IP白名单内的IP地址访问本网页。</small>
+        </div>
+		
+        <div class="form-group">
+            IP白名单: <textarea class="form-control form-control-sm" name="config[accessIP]" rows="3">{main_accessIP}</textarea>
+            <small class="form-text text-muted">多个IP可使用【,】分隔，例如：192.168.200.100，其他IP将无法访问。</small>
+        </div>
+        <div class="col-12 text-center" style="padding: 20px;">
+            <button class="btn btn-success" onclick="saveSettings()">保存</button>
+        </div>
+    </div>
+
+
+    <div class="tab-pane fade" id="nav-server" role="tabpanel" aria-labelledby="nav-server-tab">
+        <br>
+        <div class="form-group">
+            游戏版本: {pw_version}
+        </div>
+        <div class="form-group">
+            AU进程: {pw_serverTypeAuth}
+        </div>
+        <div class="form-group">
+             Gamedbd端口: <input title="" class="form-control form-control-sm" type="text" name="config[dbPort]" value="{pw_dbPort}">
+        </div>
+        <div class="form-group">
+            GDeliveryd端口: <input title="" class="form-control form-control-sm" type="text" name="config[gdeliverydPort]" value="{pw_gdeliverydPort}">
+        </div>
+        <div class="form-group">
+            GProvider端口: <input title="" class="form-control form-control-sm" type="text" name="config[GProviderPort]" value="{pw_GProviderPort}">
+        </div>
+        <div class="form-group">
+            GLinkd端口: <input title="" class="form-control form-control-sm" type="text" name="config[linkPort]" value="{pw_linkPort}">
+        </div>
+        <div class="form-group">
+            邮件标题: <input title="" class="form-control form-control-sm" type="text" name="config[titleMail]" value="{pw_titleMail}">
+        </div>
+        <div class="form-group">
+            邮件内容: <input title="" class="form-control form-control-sm" type="text" name="config[messageMail]" value="{pw_messageMail}">
+        </div>
+        <div class="form-group">
+            游戏目录: <input title="" class="form-control form-control-sm" type="text" name="config[serverPath]" value="{pw_serverPath}">
+        </div>
+        <div class="form-group">
+            日志路径: <input title="" class="form-control form-control-sm" type="text" name="config[logsPath]" value="{pw_logsPath}">
+        </div>
+        <div class="form-group">
+            聊天文件: <input title="" class="form-control form-control-sm" type="text" name="config[chatFile]" value="{pw_chatFile}">
+        </div>
+
+        <div class="col-12 text-center" style="padding: 20px;">
+            <button class="btn btn-success" onclick="saveSettings()">保存修改</button>
+        </div>
+
+    </div>
+
+    <div class="tab-pane fade" id="nav-iweb-server" role="tabpanel" aria-labelledby="nav-iweb-server-tab">
+        <br>
+
+        <div class="form-group">
+           游戏服务器IP: <input title="" class="form-control form-control-sm" type="text" name="config[server_hostname]" value="{iweb_server_hostname}">
+            <small class="form-text text-muted">游戏服务器的IP地址</small>
+        </div>
+
+        <div class="form-group">
+            端口: <input title="" class="form-control form-control-sm" type="text" name="config[server_port]" value="{iweb_server_port}">
+            <small class="form-text text-muted">访问端口，网页和服务器服务配置端口需要同步。</small>
+        </div>
+
+        <div class="form-group">
+            密钥: <input title="" class="form-control form-control-sm" type="text" name="config[server_key]" value="{iweb_server_key}">
+            <small class="form-text text-muted">访问秘钥，网页和服务器服务配置秘钥需要同步。</small>
+        </div>
+		
+        <div class="col-12 text-center" style="padding: 20px;">
+            <button class="btn btn-success" onclick="saveSettings()">保存修改</button>
+        </div>
+
+    </div>
+
+    <div class="tab-pane fade" id="nav-data" role="tabpanel" aria-labelledby="nav-data-tab">
+        <br>
+        <b>等待生成物品和图标的过程完成 <br> 然后你可以重新加载页面来更新图标和物品数量.</b><br><br>
+        在文件夹/system/data/elements.data中的文件 - {status_element} <br>
+       数据库中的物品数量：{items_count} <span class="loaderEl"></span> <br>
+        <button class="btn btn-success" onclick="goRead()">加载 Elements.data</button>
+        <br>
+        <br>
+        物品图标文件 /system/data/iconlist_ivtrm.png - {status_png_icons}<br>
+        物品名称文件 /system/data/iconlist_ivtrm.txt - {status_txt_icons}<br>
+        数据库中的图标：{icons_count} <span class="loaderIc"></span> <br>
+        <button class="btn btn-success" onclick="uploadIconItems()">加载图标</button>
+
+    </div>
+
+</div>
+

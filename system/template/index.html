@@ -1,0 +1,362 @@
+
+
+
+<div class="float-left col-sm-3 d-flex p-3 my-3 ml-2 text-white-50 {status_color} rounded box-shadow">
+    <div class="lh-100">
+        <h6 class="mb-0 text-white lh-100"><i class="fas fa-globe"></i>服务器状态</h6>
+        <small>{status}</small>
+    </div>
+</div>
+
+<div class="float-left col-sm-3 d-flex p-3 my-3 ml-2 text-white-50 bg-info rounded box-shadow">
+    <div class="lh-100">
+        <h6 class="mb-0 text-white lh-100"><i class="fas fa-users"></i> 账户总数</h6>
+        <small>{accounts}</small>
+    </div>
+</div>
+
+<div class="float-left col-sm-3 d-flex p-3 my-3 ml-2 text-white-50 bg-primary rounded box-shadow">
+    <div class="lh-100">
+        <h6 class="mb-0 text-white lh-100"><i class="fas fa-signal"></i> 在线人数</h6>
+        <small>{online}</small>
+    </div>
+</div>
+
+<div class="float-left col-sm-3 d-flex p-3 my-3 ml-2 text-white-50 bg-purple rounded box-shadow">
+    <div class="lh-100">
+        <h6 class="mb-0 text-white lh-100"><i class="fas fa-cloud"></i> IWEB版本: {iversion}</h6>
+        <small>{newVersion}</small>
+    </div>
+</div>
+
+<div class="clearfix"></div>
+<hr>
+<div class="dark-form">
+    <h6>在线角色</h6>
+    <table data-toggle="datatable" class="table table-dark">
+        <thead>
+        <tr>
+            <th>账号ID</th>
+            <th>角色ID</th>
+            <th>名称</th>
+            <th width="45%">操作</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {online_users}
+        </tbody>
+    </table>
+
+    <hr>
+    <button class="btn btn-sm btn-success" href='javascript:void(0)' data-toggle="modal" data-target="#addUser"><i class="fa fa-plus-circle"></i> 添加帐户</button>
+    <button class="btn btn-sm btn-danger" href='javascript:void(0)' data-toggle="modal" data-target="#ChangePasswd"><i class="fa fa-plus-circle"></i> 修改密码</button>
+    <button class="btn btn-sm btn-warning" href='javascript:void(0)' data-toggle="modal" data-target="#addZoneidCash"><i class="fa fa-plus-circle"></i> 分区充值</button>
+
+    <hr>
+    <h6>账号列表 </h6>
+    <table data-toggle="datatable" class="table table-dark">
+        <thead>
+        <tr>
+            <th>账号ID</th>
+            <th>用户名</th>
+            <th>邮箱</th>
+            <th>权限</th>
+            <th>申请日期</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {accounts_list}
+        </tbody>
+    </table>
+    
+    <!-- 添加账户 -->
+    <div class="modal show" id="addUser" tabindex="-1" role="dialog" aria-labelledby="addUserLabel" aria-hidden="false">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content bg-dark">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addUserLabel">添加帐户</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="modalForm2">
+                    <input name='addUsername' id="addUsername" class='form-control' type='text' value="" placeholder='账号'>
+                    <select title="" class='form-control' name="typePassword" id="typePassword">
+                        <option value="md5">密码编码 (md5)</option>
+                        <option value="base64">密码编码 (base64)</option>
+                    </select>
+                    <input name='addPassword' id="addPassword" class='form-control' type='text' value="" placeholder='密码'>
+                    <input name='addEmail' id="addEmail" class='form-control' type='text' value="" placeholder='邮箱'>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" id='addUserGo' data-dismiss="modal">创建</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 修改密码 -->
+    <div class="modal show" id="ChangePasswd" tabindex="-1" role="dialog" aria-labelledby="ChangePasswordLabel" aria-hidden="false">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content bg-dark">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ChangePasswordLabel">修改密码</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="modalForm2">
+                    <input name='addUsername2' id="addUsername2" class='form-control' type='text' value="" placeholder='账号'>
+                    <select title="" class='form-control' name="typePassword2" id="typePassword2">
+                        <option value="md5">密码编码 (md5)</option>
+                        <option value="base64">密码编码 (base64)</option>
+                    </select>
+                    <input name='addPassword2' id="addPassword2" class='form-control' type='text' value="" placeholder='密码'>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" id='ChangePasswdGo' data-dismiss="modal">修改</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 分区充值 -->
+    <div class="modal show" id="addZoneidCash" tabindex="-1" role="dialog" aria-labelledby="addZoneidCashLabel" aria-hidden="false">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content bg-dark">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addZoneidCashLabel">分区充值</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="modalForm2">
+                    <span style='color: #ffffff'>输入要充值的分区即可充值</span>
+                    <input name='Zoneid' id="Zoneid" class='form-control' type='text' value="1" placeholder='分区'>
+                    <input name='Username' id="Username" class='form-control' type='text' value="" placeholder='账号'>
+                    <input name='Cashcount' id="Cashcount" class='form-control' type='text' value="" placeholder='金额'>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" id='addZoneidCashGo' data-dismiss="modal">充值</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 角色列表 -->
+    <div class="modal show" id="getChar" tabindex="-1" role="dialog" aria-labelledby="getCharLabel" aria-hidden="false">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content bg-dark">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="getCharLabel">人物列表</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="charListModal"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 账号充值 -->
+    <div class="modal show" id="addCash" tabindex="-1" role="dialog" aria-labelledby="addCashLabel" aria-hidden="false">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content bg-dark">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addCashLabel">账号充值</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <span style='color: #ffffff'>通过分区进行充值（单位：黄金）</span>
+                    <input name='zoneidSend' class='form-control' type='text' value="1">
+                    <input name='goldCountSend' class='form-control' type='text' placeholder='黄金'>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-success" id='acceptGold' data-dismiss="modal">立即充值
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 交易密码 -->
+    <div class="modal show" id="SetCashPassword" tabindex="-1" role="dialog" aria-labelledby="cashpasswordLabel" aria-hidden="false">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content bg-dark">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cashpasswordLabel">元宝交易密码</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <span style='color: #ffffff'>修改元宝交易密码</span>
+                    <input name='PasswordSend' class='form-control' type='text' placeholder='密码'>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-success" id='setcashpassword' data-dismiss="modal">立即修改
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 安全锁 -->
+    <div class="modal show" id="IWebAutolockSet" tabindex="-1" role="dialog" aria-labelledby="autolockSeLabel" aria-hidden="false">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content bg-dark">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="autolockSeLabel">安全锁</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <span style='color: #ffffff'>锁定时间 秒：-1: 无时限锁，0: 解锁, 大于0: 锁定的秒数</span>
+                    <input name='locktime' class='form-control' type='text' placeholder='锁定时间 秒'>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-success" id='AutolockSet' data-dismiss="modal">立即修改
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 封禁 -->
+    <div class="modal show" id="ban" tabindex="-1" role="dialog" aria-labelledby="banLabel" aria-hidden="false">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content bg-dark">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="banLabel">封禁操作</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="modalForm">
+                    <input name='banTime' id="banTime" class='form-control' type='text' value="" placeholder='时间以秒为单位'>
+                    <input name='banReason' id="banReason" class='form-control' type='text' value="" placeholder='原因'>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-success" id='acceptBan' data-dismiss="modal">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- GM -->
+    <div class="modal show" id="editGM" tabindex="-1" role="dialog" aria-labelledby="editGMLabel" aria-hidden="false">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content bg-dark">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editGMLabel">权限管理</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <button name='selectall' class='btn btn-sm btn-outline-success'>全选</button>
+
+                    <button name='unselectall' class='btn btn-sm btn-outline-danger'>全部删除</button>
+
+                    <br>
+                    <br>
+                    <form id="modalForm1">
+                    <div style="overflow:scroll; height: 400px">
+                    <label><input type='checkbox' class='custom-checkbox' name='gm-0' value='0'> 0 - 切换玩家名字与ID</label><br>
+                    <label><input type='checkbox' class='custom-checkbox' name='gm-1' value='1'> 1 - 进入隐身或无敌状态</label><br>
+                    <label><input type='checkbox' class='custom-checkbox' name='gm-2' value='2'> 2 - 切换是否在线</label><br>
+                    <label><input type='checkbox' class='custom-checkbox' name='gm-3' value='3'> 3 - 切换是否可以密语</label><br>
+                    <label><input type='checkbox' class='custom-checkbox' name='gm-4' value='4'> 4 - 移动到指定角色身边</label><br>
+                    <label><input type='checkbox' class='custom-checkbox' name='gm-5' value='5'> 5 - 将指定角色召唤到GM身边</label><br>
+                    <label><input type='checkbox' class='custom-checkbox' name='gm-6' value='6'> 6 - 移动到指定位置</label><br>
+                    <label><input type='checkbox' class='custom-checkbox' name='gm-7' value='7'> 7 - 移动到指定NPC位置</label><br>
+                    <label><input type='checkbox' class='custom-checkbox' name='gm-8' value='8'> 8 - 移动到指定地图（副本）</label><br>
+                    <label><input type='checkbox' class='custom-checkbox' name='gm-9' value='9'> 9 - 移动加速</label><br>
+                    <label><input type='checkbox' class='custom-checkbox' name='gm-10' value='10'> 10 - 跟随玩家</label><br>
+                    <label><input type='checkbox' class='custom-checkbox' name='gm-11' value='11'> 11 - 获取在线玩家列表</label><br>
+                    <label><input type='checkbox' class='custom-checkbox' name='gm-100' value='100'> 100 - 强制离线</label><br>
+                    <label><input type='checkbox' class='custom-checkbox' name='gm-101' value='101'> 101 - 禁言</label><br>
+                    <label><input type='checkbox' class='custom-checkbox' name='gm-102' value='102'> 102 - 禁止玩家间、玩家与NPC交易</label><br>
+                    <label><input type='checkbox' class='custom-checkbox' name='gm-103' value='103'> 103 - 禁卖</label><br>
+                    <label><input type='checkbox' class='custom-checkbox' name='gm-104' value='104'> 104 - 系统广播</label><br>
+                    <label><input type='checkbox' class='custom-checkbox' name='gm-105' value='105'> 105 - 关闭游戏服务器</label><br>
+                    <label><input type='checkbox' class='custom-checkbox' name='gm-200' value='200'> 200 - 召唤怪物</label><br>
+                    <label><input type='checkbox' class='custom-checkbox' name='gm-201' value='201'> 201 - 驱散被召唤物体</label><br>
+                    <label><input type='checkbox' class='custom-checkbox' name='gm-202' value='202'> 202 - 伪装</label><br>
+                    <label><input type='checkbox' class='custom-checkbox' name='gm-203' value='203'> 203 - GM管理员</label><br>
+                    <label><input type='checkbox' class='custom-checkbox' name='gm-204' value='204'> 204 - 双倍经验</label><br>
+
+                    <label><input type='checkbox' class='custom-checkbox' name='gm-205' value='205'> 205 - 并发连接数</label><br>
+                    <label><input type='checkbox' class='custom-checkbox' name='gm-206' value='206'> 206 - 活动管理员</label><br>
+                    <label><input type='checkbox' class='custom-checkbox' name='gm-207' value='207'> 207 - 禁止玩家间交易</label><br>
+
+                    <label><input type='checkbox' class='custom-checkbox' name='gm-208' value='208'> 208 - 禁止拍卖操作</label><br>
+                    <label><input type='checkbox' class='custom-checkbox' name='gm-209' value='209'> 209 - 禁止邮件操作</label><br>
+
+                    <label><input type='checkbox' class='custom-checkbox' name='gm-210' value='210'> 210 - 禁止帮派操作</label><br>
+
+                    <label><input type='checkbox' class='custom-checkbox' name='gm-211' value='211'> 211 - 双倍掉钱</label><br>
+                    <label><input type='checkbox' class='custom-checkbox' name='gm-212' value='212'> 212 - 双倍掉物</label><br>
+                    <label><input type='checkbox' class='custom-checkbox' name='gm-213' value='213'> 213 - 双倍技能点</label><br>
+                    <label><input type='checkbox' class='custom-checkbox' name='gm-214' value='214'> 214 - 禁止销售点卡</label><br>
+                    <label><input type='checkbox' class='custom-checkbox' name='gm-501' value='501'> 501 - 修改角色</label><br>
+                    <label><input type='checkbox' class='custom-checkbox' name='gm-502' value='502'> 502 - 查看服务器运行状态</label><br>
+                    <label><input type='checkbox' class='custom-checkbox' name='gm-503' value='503'> 503 - 查看日志</label><br>
+                    <label><input type='checkbox' class='custom-checkbox' name='gm-504' value='504'> 504 - 强制关闭和重启游戏服务器</label><br>
+                    <label><input type='checkbox' class='custom-checkbox' name='gm-505' value='505'> 505 - 强制关闭和重启数据库服务器</label><br>
+                    <label><input type='checkbox' class='custom-checkbox' name='gm-506' value='506'> 506 - ID查询</label><br>
+                    <label><input type='checkbox' class='custom-checkbox' name='gm-507' value='507'> 507 - 角色信息</label><br>
+                    <label><input type='checkbox' class='custom-checkbox' name='gm-508' value='508'> 508 - 角色状态</label><br>
+                    <label><input type='checkbox' class='custom-checkbox' name='gm-509' value='509'> 509 - 向特定角色赠送物品</label><br>
+                    <label><input type='checkbox' class='custom-checkbox' name='gm-510' value='510'> 510 - 封号记录</label><br>
+                    <label><input type='checkbox' class='custom-checkbox' name='gm-511' value='511'> 511 - 充值记录</label><br>
+                    <label><input type='checkbox' class='custom-checkbox' name='gm-512' value='512'> 512 - 余额查询</label><br>
+                    <label><input type='checkbox' class='custom-checkbox' name='gm-513' value='513'> 513 - 修改余额</label><br>
+                    <label><input type='checkbox' class='custom-checkbox' name='gm-514' value='514'> 514 - 帐号信息</label><br>
+                    <label><input type='checkbox' class='custom-checkbox' name='gm-515' value='515'> 515 - 帐号修改</label><br>
+                    <label><input type='checkbox' class='custom-checkbox' name='gm-516' value='516'> 516 - 解封</label><br>
+                    <label><input type='checkbox' class='custom-checkbox' name='gm-517' value='517'> 517 - 角色列表</label><br>
+                    <label><input type='checkbox' class='custom-checkbox' name='gm-518' value='518'> 518 - 改密码</label><br>
+
+                    </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-success" id='addGM' data-dismiss="modal">确定
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
